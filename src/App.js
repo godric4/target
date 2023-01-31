@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components'
+import AddProjectModal from './components/AddProjectModal'
+import ModalForm from './components/ModalForm'
+import Welcome from './components/Welcome'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Wrapper>
+      <Welcome />
+      <AddProjectModal />
+      <ModalForm />
+    </Wrapper>
+  )
 }
 
-export default App;
+const Wrapper = styled.main`
+  .targets {
+    background-color: black;
+    color: white;
+    margin: 0.8rem 0;
+    border-radius: 35px;
+  }
+
+  .target-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  /* background: none; */
+  .edit {
+    color: yellow;
+  }
+
+  .delete {
+    color: red;
+  }
+
+  .completed {
+    color: greenyellow;
+  }
+
+  @media screen and (min-width: 992px) {
+    .center {
+      width: 95vw;
+    }
+  }
+`
+
+export default App
