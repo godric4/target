@@ -1,12 +1,14 @@
 import React from 'react'
 import { FaPlus } from 'react-icons/fa'
 import styled from 'styled-components'
+import { useAppContext } from '../context'
 
 const AddProjectModal = () => {
+  const { openModal } = useAppContext()
   return (
     <Wrapper>
       <div className='center modal-btn'>
-        <FaPlus />
+        <FaPlus onClick={openModal} />
       </div>
     </Wrapper>
   )

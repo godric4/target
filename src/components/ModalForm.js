@@ -1,13 +1,23 @@
 import React from 'react'
 import { FaTimes } from 'react-icons/fa'
 import styled from 'styled-components'
+import { useAppContext } from '../context'
+
+/**
+ * @description This is the form modal component
+ */
 
 const ModalForm = () => {
+  const { isModalOpen, closeModal } = useAppContext()
   return (
     <Wrapper>
-      <div className={`modal-overlay show-modl`}>
+      <div
+        className={`${
+          isModalOpen ? 'modal-overlay show-modal' : 'modal-overlay'
+        }`}
+      >
         <div className='modal-container'>Modal Content</div>
-        <button className='close-modal-btn'>
+        <button className='close-modal-btn' onClick={closeModal}>
           <FaTimes />
         </button>
       </div>
@@ -33,6 +43,7 @@ const Wrapper = styled.section`
   .show-modal {
     visibility: visible;
     z-index: 10;
+    transition: all 0.3s linear;
   }
   .modal-container {
     background: white;
@@ -54,6 +65,7 @@ const Wrapper = styled.section`
     border-color: transparent;
     color: red;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
   }
 `
 
