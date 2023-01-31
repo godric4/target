@@ -3,6 +3,10 @@ import { FaPlus } from 'react-icons/fa'
 import styled from 'styled-components'
 import { useAppContext } from '../context'
 
+/**
+ * @description This is the buttoncomponent to open modal
+ */
+
 const AddProjectModal = () => {
   const { openModal } = useAppContext()
   return (

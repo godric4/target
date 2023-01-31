@@ -3,6 +3,10 @@ import styled from 'styled-components'
 import bullseye from '../assets/images/bullseye-svgrepo-com.svg'
 import ProjectCard from './ProjectCard'
 
+/**
+ * @description Component that contains welcome message and inspiring quotes
+ */
+
 const Welcome = () => {
   return (
     <Wrapper>

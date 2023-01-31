@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import styled from 'styled-components'
 import { useAppContext } from '../context'
@@ -8,7 +8,9 @@ import { useAppContext } from '../context'
  */
 
 const ModalForm = () => {
-  const { isModalOpen, closeModal } = useAppContext()
+  const { isModalOpen, closeModal, targetName, handleSubmit, targetValue } =
+    useAppContext()
+
   return (
     <Wrapper>
       <div
@@ -16,7 +18,28 @@ const ModalForm = () => {
           isModalOpen ? 'modal-overlay show-modal' : 'modal-overlay'
         }`}
       >
-        <div className='modal-container'>Modal Content</div>
+        <div className='modal-container'>
+          <form action=''>
+            <h3>Enter A project</h3>
+            <div className='form-flex'>
+              <input
+                type='text'
+                name=''
+                placeholder='Enter A project...'
+                value={targetName}
+                className='form-input'
+                onChange={targetValue}
+              />
+              <button
+                type='submit'
+                className='submit-btn'
+                onClick={handleSubmit}
+              >
+                Add project
+              </button>
+            </div>
+          </form>
+        </div>
         <button className='close-modal-btn' onClick={closeModal}>
           <FaTimes />
         </button>
@@ -46,7 +69,7 @@ const Wrapper = styled.section`
     transition: all 0.3s linear;
   }
   .modal-container {
-    background: white;
+    background: whitesmoke;
     border-radius: 5px;
     width: 90vw;
     height: 30vh;
@@ -66,6 +89,27 @@ const Wrapper = styled.section`
     color: red;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+  }
+
+  .form-flex {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  form input {
+    margin: 1rem 0;
+    border: 3px solid black;
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+  }
+
+  .submit-btn {
+    background-color: black;
+    color: white;
+    padding: 0.4rem;
+    font-weight: bold;
+    border-radius: 5px;
   }
 `
 

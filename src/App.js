@@ -14,32 +14,6 @@ function App() {
 }
 
 const Wrapper = styled.main`
-  .targets {
-    background-color: black;
-    color: white;
-    margin: 0.8rem 0;
-    border-radius: 35px;
-  }
-
-  .target-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-  }
-  /* background: none; */
-  .edit {
-    color: yellow;
-  }
-
-  .delete {
-    color: red;
-  }
-
-  .completed {
-    color: greenyellow;
-  }
-
   @media screen and (min-width: 992px) {
     .center {
       width: 95vw;
