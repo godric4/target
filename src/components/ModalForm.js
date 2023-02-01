@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { FaTimes } from 'react-icons/fa'
 import styled from 'styled-components'
 import { useAppContext } from '../context'
+import Alert from './Alert'
 
 /**
  * @description This is the form modal component
@@ -11,13 +13,14 @@ const ModalForm = () => {
   const { isModalOpen, closeModal, targetName, handleSubmit, targetValue } =
     useAppContext()
 
-  return (
+  return ReactDOM.createPortal(
     <Wrapper>
       <div
         className={`${
           isModalOpen ? 'modal-overlay show-modal' : 'modal-overlay'
         }`}
       >
+        <Alert />
         <div className='modal-container'>
           <form action=''>
             <h3>Enter A project</h3>
@@ -25,6 +28,7 @@ const ModalForm = () => {
               <input
                 type='text'
                 name=''
+                autoFocus
                 placeholder='Enter A project...'
                 value={targetName}
                 className='form-input'
@@ -44,7 +48,8 @@ const ModalForm = () => {
           <FaTimes />
         </button>
       </div>
-    </Wrapper>
+    </Wrapper>,
+    document.body
   )
 }
 
@@ -55,7 +60,7 @@ const Wrapper = styled.section`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.9);
     display: grid;
     place-items: center;
     transition: all 0.3s linear;

@@ -16,17 +16,43 @@ const AppProvider = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [list, setList] = useState([])
   const [targetName, setTargetName] = useState('')
+  const [alert, setAlert] = useState({
+    show: false,
+    msg: '',
+    type: '',
+  })
 
+  // Handle Form submit"
+  const targetValue = (e) => {
+    setTargetName(e.target.value)
+  }
   const handleSubmit = (e) => {
     e.preventDefault()
-
-    const newTarget = { title: targetName, id: new Date().getTime().toString() }
-    setList(...list, newTarget)
-    setTargetName('')
-
-    console.log(targetName)
+    if (!targetName) {
+      showAlert(true, 'danger', 'Enter a project')
+    } else {
+      const newTarget = {
+        title: targetName,
+        id: new Date().getTime().toString(),
+      }
+      setList([...list, newTarget])
+      setTargetName('')
+      setIsModalOpen(false)
+    }
   }
 
+  // delete project
+  const deleteItem = (id) => {
+    setList(list.filter((item) => item.id !== id))
+    showAlert(true, 'danger', 'project deleted')
+  }
+
+  // Handle Alert
+  const showAlert = (show = false, type = '', msg = '') => {
+    setAlert({ show, type, msg })
+  }
+
+  // Handle Modal
   const openModal = () => {
     setIsModalOpen(true)
   }
@@ -35,19 +61,18 @@ const AppProvider = ({ children }) => {
     setIsModalOpen(false)
   }
 
-  const targetValue = (e) => {
-    setTargetName(e.target.value)
-  }
-
   return (
     <AppContext.Provider
       value={{
+        list,
         isModalOpen,
         openModal,
         closeModal,
         targetName,
+        deleteItem,
         handleSubmit,
         targetValue,
+        showAlert,
       }}
     >
       {children}

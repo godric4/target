@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import bullseye from '../assets/images/bullseye-svgrepo-com.svg'
+import Alert from './Alert'
 import ProjectCard from './ProjectCard'
 
 /**
@@ -32,6 +33,7 @@ const Welcome = () => {
           <section>
             <h3 className='text-center'>Today's Targets</h3>
             <p className='text-center'>Date</p>
+            <Alert />
             <ProjectCard />
           </section>
         </div>
