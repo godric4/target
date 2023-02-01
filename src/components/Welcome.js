@@ -9,6 +9,23 @@ import ProjectCard from './ProjectCard'
  */
 
 const Welcome = () => {
+  const user = 'Fena'
+  const days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ]
+  const date = new Date()
+  let dayName = days[date.getDay()]
+  const day = date.getDate()
+  const month = date.getMonth() + 1
+  const year = date.getFullYear()
+  const today = `${dayName}, ${day}/${month}/${year}`
+
   return (
     <Wrapper>
       <section className='app-header'>
@@ -20,7 +37,7 @@ const Welcome = () => {
       <div className='center'>
         <div className='welcome'>
           <p>
-            Hello <strong>Godric,</strong>
+            Hello <strong>{user},</strong>
           </p>
 
           <section className='quote-container'>
@@ -32,7 +49,7 @@ const Welcome = () => {
           </section>
           <section>
             <h3 className='text-center'>Today's Targets</h3>
-            <p className='text-center'>Date</p>
+            <p className='text-center date'>{today}</p>
             <Alert />
             <ProjectCard />
           </section>
@@ -50,6 +67,10 @@ const Wrapper = styled.div`
     background-color: black;
     color: white;
     padding: 1rem;
+  }
+
+  .date {
+    padding-top: 0.8rem;
   }
 
   img {

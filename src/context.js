@@ -16,6 +16,8 @@ const AppProvider = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [list, setList] = useState([])
   const [targetName, setTargetName] = useState('')
+  const [isEditing, setIsEditing] = useState(false)
+  const [editID, setEditID] = useState(null)
   const [alert, setAlert] = useState({
     show: false,
     msg: '',
@@ -28,8 +30,23 @@ const AppProvider = ({ children }) => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!targetName) {
-      showAlert(true, 'danger', 'Enter a project')
+    // if (!targetName) {
+    //   showAlert(true, 'danger', 'Enter a project')
+    // }
+    if (targetName && isEditing) {
+      setList(
+        list.map((item) => {
+          if (item.id === editID) {
+            return { ...item, title: targetName }
+          }
+          return item
+        })
+      )
+      setTargetName('')
+      setEditID(null)
+      setIsEditing(false)
+      closeModal()
+      // showAlert()
     } else {
       const newTarget = {
         title: targetName,
@@ -40,23 +57,28 @@ const AppProvider = ({ children }) => {
       setIsModalOpen(false)
     }
   }
-
   // delete project
   const deleteItem = (id) => {
     setList(list.filter((item) => item.id !== id))
     showAlert(true, 'danger', 'project deleted')
   }
 
+  // Edit Project
+  const editItem = (id) => {
+    const uniqueItem = list.find((item) => item.id === id)
+    setIsEditing(true)
+    setEditID(id)
+    setTargetName(uniqueItem.title)
+    openModal()
+  }
   // Handle Alert
   const showAlert = (show = false, type = '', msg = '') => {
     setAlert({ show, type, msg })
   }
-
   // Handle Modal
   const openModal = () => {
     setIsModalOpen(true)
   }
-
   const closeModal = () => {
     setIsModalOpen(false)
   }
@@ -73,6 +95,7 @@ const AppProvider = ({ children }) => {
         handleSubmit,
         targetValue,
         showAlert,
+        editItem,
       }}
     >
       {children}

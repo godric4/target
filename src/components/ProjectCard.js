@@ -5,7 +5,7 @@ import { useAppContext } from '../context'
 import EmptyList from './EmptyList'
 
 const ProjectCard = () => {
-  const { list, deleteItem } = useAppContext()
+  const { list, deleteItem, editItem } = useAppContext()
 
   if (list.length === 0) {
     return <EmptyList />
@@ -29,7 +29,7 @@ const ProjectCard = () => {
                 <p>{title}</p>
 
                 <div className='target-control'>
-                  <button className='btn edit'>
+                  <button className='btn edit' onClick={() => editItem(id)}>
                     <FaEdit />
                   </button>
                   <button className='btn delete' onClick={() => deleteItem(id)}>
