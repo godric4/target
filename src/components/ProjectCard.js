@@ -5,7 +5,8 @@ import { useAppContext } from '../context'
 import EmptyList from './EmptyList'
 
 const ProjectCard = () => {
-  const { list, deleteItem, editItem } = useAppContext()
+  const { list, deleteItem, editItem, isCompleted, completedProject } =
+    useAppContext()
 
   if (list.length === 0) {
     return <EmptyList />
@@ -26,7 +27,7 @@ const ProjectCard = () => {
           return (
             <div className='targets' key={id}>
               <div className='target-item'>
-                <p>{title}</p>
+                <p className={`${isCompleted ? 'completed' : ''}`}>{title}</p>
 
                 <div className='target-control'>
                   <button className='btn edit' onClick={() => editItem(id)}>
@@ -35,8 +36,8 @@ const ProjectCard = () => {
                   <button className='btn delete' onClick={() => deleteItem(id)}>
                     <FaTrash />
                   </button>
-                  <button className='btn completed'>
-                    <FaCheck />
+                  <button className='btn completed-btn'>
+                    <FaCheck onClick={completedProject} />
                   </button>
                 </div>
               </div>
@@ -55,23 +56,28 @@ const Wrapper = styled.section`
     margin: 0.8rem 0;
   }
 
+  .completed {
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    color: greenyellow;
+  }
+  .completed-btn {
+    color: greenyellow;
+  }
+
   .target-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
   }
-  /* background: none; */
+
   .edit {
     color: yellow;
   }
 
   .delete {
     color: red;
-  }
-
-  .completed {
-    color: greenyellow;
   }
 `
 

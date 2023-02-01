@@ -14,6 +14,7 @@ const AppContext = React.createContext()
 const AppProvider = ({ children }) => {
   // States
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isCompleted, setIsCompleted] = useState(false)
   const [list, setList] = useState([])
   const [targetName, setTargetName] = useState('')
   const [isEditing, setIsEditing] = useState(false)
@@ -57,6 +58,11 @@ const AppProvider = ({ children }) => {
       setIsModalOpen(false)
     }
   }
+
+  // completed project
+  const completedProject = () => {
+    setIsCompleted(true)
+  }
   // delete project
   const deleteItem = (id) => {
     setList(list.filter((item) => item.id !== id))
@@ -96,6 +102,8 @@ const AppProvider = ({ children }) => {
         targetValue,
         showAlert,
         editItem,
+        completedProject,
+        isCompleted,
       }}
     >
       {children}
