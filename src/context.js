@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 
 /**
  * @description This is the context file
@@ -12,10 +12,20 @@ import React, { useContext, useState } from 'react'
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
+  // LocalStorage
+  const localStore = () => {
+    let list = localStorage.getItem('list')
+    if (list) {
+      return (list = JSON.parse(localStorage.getItem('list')))
+    } else {
+      return []
+    }
+  }
+
   // States
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isCompleted, setIsCompleted] = useState(false)
-  const [list, setList] = useState([])
+  const [list, setList] = useState(localStore)
   const [targetName, setTargetName] = useState('')
   const [isEditing, setIsEditing] = useState(false)
   const [editID, setEditID] = useState(null)
@@ -25,6 +35,9 @@ const AppProvider = ({ children }) => {
     type: '',
   })
 
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(list))
+  }, [list])
   // Handle Form submit"
   const targetValue = (e) => {
     setTargetName(e.target.value)
