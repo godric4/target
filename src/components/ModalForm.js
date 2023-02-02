@@ -10,8 +10,14 @@ import Alert from './Alert'
  */
 
 const ModalForm = () => {
-  const { isModalOpen, closeModal, targetName, handleSubmit, targetValue } =
-    useAppContext()
+  const {
+    isModalOpen,
+    closeModal,
+    targetName,
+    handleSubmit,
+    targetValue,
+    alert,
+  } = useAppContext()
 
   return ReactDOM.createPortal(
     <Wrapper>
@@ -20,10 +26,12 @@ const ModalForm = () => {
           isModalOpen ? 'modal-overlay show-modal' : 'modal-overlay'
         }`}
       >
-        <Alert />
         <div className='modal-container'>
           <form action=''>
+            {alert.show && <Alert {...alert} />}
+
             <h3>Enter A project</h3>
+
             <div className='form-flex'>
               <input
                 type='text'

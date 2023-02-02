@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useAppContext } from '../context'
 
 const Alert = () => {
-  const { showAlert } = useAppContext()
-  const { msg, type } = showAlert
+  const { alert, showAlert, list } = useAppContext()
 
+  let { msg, type } = alert
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      showAlert()
+    }, 3000)
+    return () => clearTimeout(timeout)
+  }, [list])
   return (
     <Wrapper>
       <p className={`alert alert-${type}`}>{msg}</p>
@@ -15,6 +22,7 @@ const Alert = () => {
 
 const Wrapper = styled.div`
   .alert {
+    z-index: 1000;
     margin-bottom: 1rem;
     margin-top: 1rem;
     height: 1.25rem;

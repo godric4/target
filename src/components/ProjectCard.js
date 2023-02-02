@@ -5,8 +5,10 @@ import { useAppContext } from '../context'
 import EmptyList from './EmptyList'
 
 const ProjectCard = () => {
-  const { list, deleteItem, editItem, isCompleted, completedProject } =
+  const { list, deleteItem, editItem, isCompleted, completedProject, alert } =
     useAppContext()
+
+  console.log(alert)
 
   if (list.length === 0) {
     return <EmptyList />
@@ -27,17 +29,20 @@ const ProjectCard = () => {
           return (
             <div className='targets' key={id}>
               <div className='target-item'>
-                <p className={`${isCompleted ? 'completed' : ''}`}>{title}</p>
+                <p className={`${isCompleted ? 'competed' : ''}`}>{title}</p>
 
                 <div className='target-control'>
-                  <button className='btn edit' onClick={() => editItem(id)}>
+                  <button
+                    className={`${isCompleted ? 'hide-dit' : 'btn edit'}`}
+                    onClick={() => editItem(id)}
+                  >
                     <FaEdit />
                   </button>
                   <button className='btn delete' onClick={() => deleteItem(id)}>
                     <FaTrash />
                   </button>
                   <button className='btn completed-btn'>
-                    <FaCheck onClick={completedProject} />
+                    <FaCheck onClick={() => completedProject(id)} />
                   </button>
                 </div>
               </div>
@@ -74,6 +79,10 @@ const Wrapper = styled.section`
 
   .edit {
     color: yellow;
+  }
+
+  .hide-edit {
+    display: none;
   }
 
   .delete {

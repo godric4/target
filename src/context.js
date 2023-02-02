@@ -44,10 +44,9 @@ const AppProvider = ({ children }) => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    // if (!targetName) {
-    //   showAlert(true, 'danger', 'Enter a project')
-    // }
-    if (targetName && isEditing) {
+    if (!targetName) {
+      showAlert(true, 'danger', 'Add a project')
+    } else if (targetName && isEditing) {
       setList(
         list.map((item) => {
           if (item.id === editID) {
@@ -60,7 +59,7 @@ const AppProvider = ({ children }) => {
       setEditID(null)
       setIsEditing(false)
       closeModal()
-      // showAlert()
+      showAlert(true, 'success', 'Project Edited')
     } else {
       const newTarget = {
         title: targetName,
@@ -69,12 +68,15 @@ const AppProvider = ({ children }) => {
       setList([...list, newTarget])
       setTargetName('')
       setIsModalOpen(false)
+      showAlert(true, 'success', 'Item added ')
     }
   }
 
   // completed project
-  const completedProject = () => {
-    setIsCompleted(true)
+  const completedProject = (id) => {
+    console.log('YES')
+
+    // setIsCompleted(true)
   }
   // delete project
   const deleteItem = (id) => {
@@ -117,6 +119,7 @@ const AppProvider = ({ children }) => {
         editItem,
         completedProject,
         isCompleted,
+        alert,
       }}
     >
       {children}
