@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import bullseye from '../assets/images/bullseye-svgrepo-com.svg'
 import Alert from './Alert'
 import ProjectCard from './ProjectCard'
+import { quotes } from '../data'
+import { days } from '../data'
 
 /**
  * @description Component that contains welcome message and inspiring quotes
@@ -10,21 +12,14 @@ import ProjectCard from './ProjectCard'
 
 const Welcome = () => {
   const user = 'Fena'
-  const days = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ]
   const date = new Date()
   let dayName = days[date.getDay()]
   const day = date.getDate()
   const month = date.getMonth() + 1
   const year = date.getFullYear()
   const today = `${dayName}, ${day}/${month}/${year}`
+
+  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)]
 
   return (
     <Wrapper>
@@ -43,8 +38,7 @@ const Welcome = () => {
           <section className='quote-container'>
             <p>
               <strong>"</strong>
-              Lorem ipsum dolor sit amet adipisicing elit. Quaerat mque qui
-              ipsam velit tempore cum?<strong>"</strong>
+              {randomQuote} <strong>"</strong>
             </p>
           </section>
           <section>

@@ -5,10 +5,8 @@ import { useAppContext } from '../context'
 import EmptyList from './EmptyList'
 
 const ProjectCard = () => {
-  const { list, deleteItem, editItem, isCompleted, completedProject, alert } =
+  const { list, deleteItem, editItem, isCompleted, completedProject } =
     useAppContext()
-
-  console.log(alert)
 
   if (list.length === 0) {
     return <EmptyList />
