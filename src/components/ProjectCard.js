@@ -30,7 +30,10 @@ const ProjectCard = () => {
                 <p className={`${isCompleted ? 'completed' : ''}`}>{title}</p>
 
                 <div className='target-control'>
-                  <button className='btn edit' onClick={() => editItem(id)}>
+                  <button
+                    className={`${isCompleted ? 'hide-edit' : 'btn edit'}`}
+                    onClick={() => editItem(id)}
+                  >
                     <FaEdit />
                   </button>
                   <button className='btn delete' onClick={() => deleteItem(id)}>
