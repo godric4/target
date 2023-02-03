@@ -24,7 +24,6 @@ const AppProvider = ({ children }) => {
 
   // States
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isCompleted, setIsCompleted] = useState(false)
   const [list, setList] = useState(localStore)
   const [targetName, setTargetName] = useState('')
   const [isEditing, setIsEditing] = useState(false)
@@ -64,6 +63,7 @@ const AppProvider = ({ children }) => {
       const newTarget = {
         title: targetName,
         id: new Date().getTime().toString(),
+        isCompleted: false,
       }
       setList([...list, newTarget])
       setTargetName('')
@@ -74,9 +74,15 @@ const AppProvider = ({ children }) => {
 
   // completed project
   const completedProject = (id) => {
-    console.log('YES')
+    const uniqueItem = list.map((item) => {
+      if (item.id === id) {
+        return { ...item, isCompleted: !item.isCompleted }
+      }
+      return item
+    })
 
-    // setIsCompleted(true)
+    setList(uniqueItem)
+    showAlert(true, 'success', 'Task completed ')
   }
   // delete project
   const deleteItem = (id) => {
@@ -118,8 +124,8 @@ const AppProvider = ({ children }) => {
         showAlert,
         editItem,
         completedProject,
-        isCompleted,
         alert,
+        isEditing,
       }}
     >
       {children}

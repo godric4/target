@@ -17,6 +17,7 @@ const ModalForm = () => {
     handleSubmit,
     targetValue,
     alert,
+    isEditing,
   } = useAppContext()
 
   return ReactDOM.createPortal(
@@ -30,7 +31,7 @@ const ModalForm = () => {
           <form action=''>
             {alert.show && <Alert {...alert} />}
 
-            <h3>Enter A project</h3>
+            <h3> {isEditing ? 'Edit Project' : 'Add Project'}</h3>
 
             <div className='form-flex'>
               <input
@@ -47,7 +48,7 @@ const ModalForm = () => {
                 className='submit-btn'
                 onClick={handleSubmit}
               >
-                Add project
+                Submit
               </button>
             </div>
           </form>

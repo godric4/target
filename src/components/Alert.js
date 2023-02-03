@@ -29,10 +29,11 @@ const Wrapper = styled.div`
     display: grid;
     align-items: center;
     text-align: center;
-    font-size: 0.7rem;
+    font-size: 1rem;
     border-radius: 0.25rem;
     letter-spacing: var(--spacing);
     text-transform: capitalize;
+    font-weight: bold;
   }
   .alert-danger {
     color: #721c24;

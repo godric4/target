@@ -11,7 +11,6 @@ import { days } from '../data'
  */
 
 const Welcome = () => {
-  const user = 'Fena'
   const date = new Date()
   let dayName = days[date.getDay()]
   const day = date.getDate()
@@ -31,18 +30,11 @@ const Welcome = () => {
       </section>
       <div className='center'>
         <div className='welcome'>
-          <p>
-            Hello <strong>{user},</strong>
-          </p>
-
-          <section className='quote-container'>
-            <p>
+          <section>
+            <p className='quote'>
               <strong>"</strong>
               {randomQuote} <strong>"</strong>
             </p>
-          </section>
-          <section>
-            <h3 className='text-center'>Today's Targets</h3>
             <p className='text-center date'>{today}</p>
             <Alert />
             <ProjectCard />
@@ -76,9 +68,11 @@ const Wrapper = styled.div`
     margin-top: 1rem;
   }
 
-  .quote-container {
+  .quote {
     padding-top: 1rem;
-    padding-bottom: 1rem;
+    text-align: center;
+    font-weight: bold;
+    font-family: cursive;
   }
 `
 

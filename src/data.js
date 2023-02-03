@@ -1,5 +1,5 @@
 export const quotes = [
-  'Trust because you are willing to accept the risk, not because it is safe or certain',
+  'Talent is not enough',
 
   'Love what you do, assume nothing, question everything',
 
@@ -8,6 +8,7 @@ export const quotes = [
   'All cannot be lost, when there is so much yet to be found',
 
   'On the darkest days of life, bright flows the river of God',
+  'All our dreams come true if we have the courage to do it',
 ]
 
 export const days = [

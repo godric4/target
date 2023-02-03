@@ -5,7 +5,7 @@ import { useAppContext } from '../context'
 import EmptyList from './EmptyList'
 
 const ProjectCard = () => {
-  const { list, deleteItem, editItem, isCompleted, completedProject } =
+  const { list, deleteItem, editItem, completedProject, isDone } =
     useAppContext()
 
   if (list.length === 0) {
@@ -15,7 +15,7 @@ const ProjectCard = () => {
   return (
     <Wrapper>
       {list.map((item, index) => {
-        const { title, id } = item
+        const { title, id, isCompleted } = item
 
         if (list.length === 0) {
           return (
@@ -27,13 +27,10 @@ const ProjectCard = () => {
           return (
             <div className='targets' key={id}>
               <div className='target-item'>
-                <p className={`${isCompleted ? 'competed' : ''}`}>{title}</p>
+                <p className={`${isCompleted ? 'completed' : ''}`}>{title}</p>
 
                 <div className='target-control'>
-                  <button
-                    className={`${isCompleted ? 'hide-dit' : 'btn edit'}`}
-                    onClick={() => editItem(id)}
-                  >
+                  <button className='btn edit' onClick={() => editItem(id)}>
                     <FaEdit />
                   </button>
                   <button className='btn delete' onClick={() => deleteItem(id)}>
