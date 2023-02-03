@@ -2,13 +2,11 @@
 
 To-do list project to help build up my ReactJs skills
 
-# Demo
-
-View project demo @
+# Demo Link
 
 # Concepts Applied
 
 1. Styled components
 2. UseContext hook
 3. UseState hook
-4. React portals (it rose out of neccesity to fix "target container" bug)
+4. PWA

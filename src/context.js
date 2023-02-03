@@ -107,6 +107,7 @@ const AppProvider = ({ children }) => {
     setIsModalOpen(true)
   }
   const closeModal = () => {
+    setTargetName('')
     setIsModalOpen(false)
   }
 

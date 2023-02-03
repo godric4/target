@@ -31,7 +31,7 @@ const ModalForm = () => {
           <form action=''>
             {alert.show && <Alert {...alert} />}
 
-            <h3> {isEditing ? 'Edit Project' : 'Add Project'}</h3>
+            <h3> {isEditing ? 'Edit Target' : 'Add Target'}</h3>
 
             <div className='form-flex'>
               <input
